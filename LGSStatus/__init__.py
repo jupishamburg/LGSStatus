@@ -1,6 +1,19 @@
 import bottle, sqlite3
 
-db = sqlite3.connect("lgs.db")
+config = {
+	"db": "lgs.db",
+	
+	"types": [
+		"door",
+		"clients",
+		"temperature"
+	],
+	"keys": [
+		"ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
+	]
+}
+
+db = sqlite3.connect(config["db"])
 cur = db.cursor()
 app = bottle.Bottle()
 
