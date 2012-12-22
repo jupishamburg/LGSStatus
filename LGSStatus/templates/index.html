@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LGS-Status</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width = device-width,maximum-scale=1,minimum-scale=1" />
+		
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" />
+		<link rel="stylesheet" href="static/css/ppsym/stylesheet.css" />
+		<link rel="stylesheet" href="static/css/lgsstatus.css" />
+			
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="static/jquery.flot.js"></script>
+		<script>
+			$(document).ready(function() {
+				var day = [
+					{
+						label: 'Geräte im Netz',
+						data: {{ day["clients"] }},
+						color: '#11644D'
+					},
+					{
+						label: 'Temperatur in °C',
+						data: {{ day["temperature"] }},
+						color: '#F24E4E'
+					},
+					{
+						label: 'Türstatus',
+						data: {{ day["door"] }},
+						color: '#F78145',
+						lines: {
+							fill: true
+						}
+					}
+				];
+				
+				var day_plot = $.plot($('#day'), day, {
+					xaxis: {
+						mode: 'time',
+						ticks: 10,
+						minTickSize: [1, 'hour'],
+						min: (new Date().getTime()) - 864e+5,
+						max: (new Date().getTime()),
+						timezone: 'browser'
+					},
+					yaxis: {
+						tickSize: 1
+					},
+					legend: {
+						position: 'nw'
+					}
+				});
+				
+				$(window).resize(function() {
+					day_plot.resize();
+					day_plot.setupGrid();
+					day_plot.draw();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1>LGS-Status <small>{{ current }}</small></h1>
+			<aside id="icons">
+				<a id="twitter" href="https://twitter.com/LGSHH"><i class="icon-twitter"></i></a>
+				<a id="github" href="https://github.com/jupishamburg/LGSStatus"><i class="icon-github"></i></a>
+				<a id="piraten" href="https://www.piratenpartei-hamburg.de/"><i class="pirat">P</i></a>
+			</aside>
+			<div class="clear"></div>
+		</header>
+		
+		<h2>Tagesgraph</h2>
+		<div id="day" class="graph"></div>
+	</body>
+</html>
