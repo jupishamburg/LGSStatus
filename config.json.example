@@ -1,0 +1,12 @@
+{
+	"db": "lgs.db",
+	
+	"types": [
+		"door",
+		"clients",
+		"temperature"
+	],
+	"keys": [
+		"ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
+	]
+}

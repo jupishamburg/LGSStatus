@@ -1,17 +1,6 @@
-import bottle, sqlite3
+import bottle, sqlite3, json
 
-config = {
-	"db": "lgs.db",
-	
-	"types": [
-		"door",
-		"clients",
-		"temperature"
-	],
-	"keys": [
-		"ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
-	]
-}
+config = json.loads(open("config.json", "r").read())
 
 db = sqlite3.connect(config["db"])
 cur = db.cursor()

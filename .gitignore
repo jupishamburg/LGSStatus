@@ -1,2 +1,3 @@
 *.pyc
 lgs.db
+config.json
