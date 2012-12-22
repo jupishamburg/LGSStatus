@@ -4,9 +4,9 @@ from LGSStatus import app, helpers
 @app.route("/")
 def index():
 	day = {
-		"clients":		helpers.getTypeVals("clients", 100),
-		"temperature":	helpers.getTypeVals("temperature", 100),
-		"door":			helpers.getTypeVals("door", 100)
+		"clients":		helpers.getTypeVals("clients", 300),
+		"temperature":	helpers.getTypeVals("temperature", 300),
+		"door":			helpers.getTypeVals("door", 300)
 	}
 	
 	# get the current door state
