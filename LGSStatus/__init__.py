@@ -1,12 +1,14 @@
 import bottle, sqlite3, json
 
 config = json.loads(open("config.json", "r").read())
-
 db = sqlite3.connect(config["db"])
 cur = db.cursor()
 app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
+
+from LGSStatus import helpers
+twitter = helpers.connectToTwitter()
 
 @app.route("/static/<filepath:path>")
 def static(filepath):
