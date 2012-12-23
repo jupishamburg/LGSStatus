@@ -5,7 +5,7 @@ void setup(){
 void loop(){
   if(Serial.available()>0){
     Serial.print(analogRead(4)*0.004882812*100-273.15);
-    Serial.print(",");cd
+    Serial.print(",");
     Serial.print(analogRead(0));
     Serial.println();
     Serial.read();
