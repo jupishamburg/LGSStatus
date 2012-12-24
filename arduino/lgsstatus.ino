@@ -16,6 +16,7 @@ void loop(){
     while(i < 10){
       temp[n] += analogRead(4)*0.004882812*100-273.15;
       hell += analogRead(0);
+      delay(10);
       i++;
     }
     temp[n] /= 10;
