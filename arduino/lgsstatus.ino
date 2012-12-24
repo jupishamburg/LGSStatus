@@ -2,7 +2,7 @@ void setup(){
   Serial.begin(9600);
 }
 
-float temp[] = {0, 0, 0, 0, 0}; int hell = 0; int i = 0; int n = 0; int l =0;
+float temp[] = {0, 0, 0, 0, 0, 0}; int hell = 0; int i = 0; int n = 0; int l =0;
 
 
 void loop(){
