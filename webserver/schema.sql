@@ -1,17 +1,17 @@
 CREATE TABLE clients (
-  id Integer Primary Key Autoincrement,
-  value Integer,
-  time Integer
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  value INTEGER,
+  time INTEGER
 );
 
 CREATE TABLE temperature (
-  id Integer Primary Key Autoincrement,
-  value Integer,
-  time Integer
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  value INTEGER,
+  time INTEGER
 );
 
 CREATE TABLE door (
-  id Integer Primary Key Autoincrement,
-  value Boolean,
-  time Integer
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  value BOOLEAN,
+  time INTEGER
 );
