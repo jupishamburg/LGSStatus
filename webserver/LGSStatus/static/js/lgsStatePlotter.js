@@ -44,4 +44,4 @@
 			day_plot.draw();
 		});
 	});
-})(jQuery, document, window, lgsStateData);
+})(jQuery, document, window, lgs.data);

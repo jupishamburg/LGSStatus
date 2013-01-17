@@ -11,14 +11,13 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="../static/vendors/jquery.flot.js"></script>
 	<script type="text/javascript">
-		var lgsStateData = {
-			clients:null,
-			doorState:null,
-			temperature:null
+		var lgs = {
+			data: {}
 		};
-		lgsStateData.clients = {{ day["clients"] }};
-		lgsStateData.temperature = {{ day["temperature"] }};
-		lgsStateData.doorState = {{ day["door"] }};
+
+		lgs.data.clients = {{ day["clients"] }};
+		lgs.data.temperature = {{ day["temperature"] }};
+		lgs.data.doorState = {{ day["door"] }};
 	</script>
 	<script type="text/javascript" src="../static/js/lgsStatePlotter.js"></script>
 </head>
