@@ -1,4 +1,4 @@
-# How to run Webserver plotter
+# How to run LgsStatePlotter locally:
 
 * pip install -r requirements.txt
 * wget http://lgs-hh.geheimorganisation.org/lgs.db 
