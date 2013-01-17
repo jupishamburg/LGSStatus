@@ -2,17 +2,17 @@
 	var day = [
 		{
 			label:'Geräte im Netz',
-			data:data.clients,
+			data:lgsStateData.clients,
 			color:'#11644D'
 		},
 		{
 			label:'Temperatur in °C',
-			data:data.temperature,
+			data:lgsStateData.temperature,
 			color:'#F24E4E'
 		},
 		{
 			label:'Türstatus',
-			data:data.doorState,
+			data:lgsStateData.doorState,
 			color:'#F78145',
 			lines:{
 				fill:true
