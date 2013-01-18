@@ -1,5 +1,5 @@
 (function lgsState($, document, window, lgsStateData) {
-	var day = [
+	var dailyData = [
 		{
 			label:'Geräte im Netz',
 			data:lgsStateData.clients,
@@ -21,7 +21,7 @@
 	];
 
 	$(document).ready(function () {
-		var day_plot = $.plot($('#day'), day, {
+		var dayPlotter = $.plot($('#day'), dailyData, {
 			xaxis:{
 				mode:'time',
 				ticks:10,
@@ -39,9 +39,9 @@
 		});
 
 		$(window).resize(function () {
-			day_plot.resize();
-			day_plot.setupGrid();
-			day_plot.draw();
+			dayPlotter.resize();
+			dayPlotter.setupGrid();
+			dayPlotter.draw();
 		});
 	});
 })(jQuery, document, window, lgs.data);
