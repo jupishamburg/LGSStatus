@@ -1,8 +1,21 @@
 #!/usr/bin/env python2
-import serial, urllib, urllib2, time, sys
+import serial, time, sys, requests
+def postDoorState(baseUrl, doorState, securityToken):
+	params = {
+	'value': doorState,
+	'key': securityToken
+	}
+	requests.post(baseUrl + "/door", params)
+def postTemperature(baseUrl, temperature, securityToken):
+	params = {
+	'value': temperature,
+	'key': securityToken
+	}
+	requests.post(baseUrl + "/temperature", params)
 
-def main():
-	url = sys.argv[1]
+# TODO: This should be mockable
+if True:
+	baseUrl = sys.argv[1]
 	securityToken = sys.argv[2]
 	port = sys.argv[3]
 
@@ -10,35 +23,19 @@ def main():
 	s.flushInput()
 	s.flushOutput()
 
-	## get the key-pair from the arduino
+	# get the key-pair from the arduino
 	if s.write("k") is 1:
 		v = s.readline().replace("\r\n", "").split(",")
 
 	doorState = True if (int(v[1]) > 150) else False
-	postDoorState(url, doorState, securityToken)
-
 	temperature = int(v[0]) - 12 # dirty hack because of electrical problems
-	postTemperature(url, temperature, securityToken)
+else:
+	#Temporary Mock
+	print "Should not be run on live server :D"
+	baseUrl = "http://0.0.0.0:8080/append"
+	doorState = "1"
+	temperature = "52"
+	securityToken = "ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
 
-def postDoorState(url, doorState, securityToken):
-	params = {
-	'value': doorState,
-	'key': securityToken
-	}
-	URLRequest(url + "/door", params, "POST")
-
-def postTemperature(url, temperature, securityToken):
-	params = {
-	'value': temperature,
-	'key': securityToken
-	}
-	URLRequest(url + "/temperature", params, "POST")
-
-def URLRequest(url, params, method="GET"):
-	if method == "POST":
-		return urllib2.Request(url, data=urllib.urlencode(params))
-	else:
-		return urllib2.Request(url + "?" + urllib.urlencode(params))
-
-if __name__ == "__main__":
-	main()
+postDoorState(baseUrl, doorState, securityToken)
+postTemperature(baseUrl, temperature, securityToken)
