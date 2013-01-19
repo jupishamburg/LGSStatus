@@ -13,12 +13,13 @@ In times of the Internet of things, we made made our branch office realize
 The whole project consists of three aspects:
 
 * Arduino with photosensor
+ * measures the photons and sends the data to the Raspberry Pi
 * Raspberry Pie
  * Posts all the relevant things to the webservice
- * Tweets all the things
 * Webservice
  * stores all the data
  * has nice graphic representation of the aggregated data
+ * Tweets all the things
 
 The Twitter account is: https://twitter.com/LGSHH
 
