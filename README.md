@@ -17,8 +17,8 @@ The whole project consists of three aspects:
 * Raspberry Pie
  * Posts all the relevant things to the webservice
 * Webservice
- * stores all the data
- * has nice graphic representation of the aggregated data
+ * stores all the data in a SQLite database
+ * generates nice graphic representation of the aggregated data
  * Tweets all the things
 
 The Twitter account is: https://twitter.com/LGSHH
