@@ -1,20 +1,23 @@
 import bottle, time
 from LGSStatus import app, config, cur, db, helpers
 
-@app.route("/append/<type>", method="POST")
+@app.post("/append/<type>")
 def insert(type):
-	if not bottle.request.query.key in config["keys"]:
-		bottle.abort(403, "Security token not given")
+	securityKey = bottle.request.POST.key
+	value = bottle.request.POST.value
+
+	if securityKey not in config["keys"]:
+		bottle.abort(401, "Security token not given")
 
 	if type not in config["types"]:
-		bottle.abort(400, "what about correct types?")
+		bottle.abort(400, "Invalid type")
 
 
-	if not bottle.request.query.value:
-		bottle.abort(400, "you think nobody needs the value? then i can't agree with you.")
+	if not value:
+		bottle.abort(400, "Missing value parameter")
 
 	cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
-		bottle.request.query.value,
+		value,
 		int(time.time())
 	))
 	db.commit()
@@ -22,4 +25,4 @@ def insert(type):
 	if type == "door":
 		helpers.doorTweet()
 
-	return type + ":" + bottle.request.query.value,
+	return type + ":" + value
