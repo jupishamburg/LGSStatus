@@ -8,7 +8,7 @@ float temp[] = {0, 0, 0, 0, 0, 0};
 int hell = 0;
 int i = 0;
 int n = 0;
-int l =0;
+int l = 0;
 
 
 void loop() {
