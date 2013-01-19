@@ -9,6 +9,6 @@ def index():
 		"door":			helpers.getTypeVals("door", 300)
 	}
 
-	isDoorOpen = (helpers.getLastVal("door")[1] == True);
+	isDoorOpen = (helpers.getLastVal("door")[1] == True)
 
 	return bottle.jinja2_template("index.html", dataOfToday=dataOfToday, isDoorOpen=isDoorOpen)
