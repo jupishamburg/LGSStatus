@@ -10,4 +10,4 @@ networkClientsAmount=`nmap -sn ${NET} | grep 'Host is up' | wc -l`
 curl -d "key=${KEY}&value=${networkClientsAmount}" "${URL}/clients"
 
 ## temperature and door
-python2 $(pwd)/temperature-door.py ${URL} ${KEY} ${TTY}
+python2 $(dirname $0)/temperature-door.py ${URL} ${KEY} ${TTY}
