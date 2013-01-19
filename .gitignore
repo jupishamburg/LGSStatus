@@ -1,3 +1,5 @@
 *.pyc
 lgs.db
 config.json
+.*.sw?
+.sw?
