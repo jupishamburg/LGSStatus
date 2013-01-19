@@ -23,4 +23,4 @@ def insert(type):
 	if type == "door":
 		helpers.doorTweet()
 
-	return "1"
+	return type + ":" + bottle.request.query.value,
