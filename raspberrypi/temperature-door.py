@@ -27,7 +27,7 @@ if True:
 	if s.write("k") is 1:
 		v = s.readline().replace("\r\n", "").split(",")
 
-	doorState = True if (int(v[1]) > 150) else False
+	doorState = "1" if (int(v[1]) > 150) else "0"
 	temperature = int(v[0]) - 12 # dirty hack because of electrical problems
 else:
 	#Temporary Mock
