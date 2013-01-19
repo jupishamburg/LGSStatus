@@ -10,3 +10,16 @@ Open browser of your choice and open:
 http://0.0.0.0:8080/
 
 Profit!
+
+# API
+
+Posting:
+* curl -d 'key=ieSohc0oochie6Reequungoo7quoza8NuRaing9una&value=42' '0.0.0.0:8080/append/clients'
+
+Accepted types:
+
+clients
+temperature
+door
+
+
