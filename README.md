@@ -1,9 +1,9 @@
 LGSStatus
 =========
 
-This is a projekt of the youth organization Junge Piraten Hamburg (Young Pirates Hamburg).
+This is a project of the youth organization Junge Piraten Hamburg (Young Pirates Hamburg).
 
-In times of the Internet of things, we made made our branch office realize
+In times of the Internet of things, we made made our branch office realize:
 
 * if it is open
 * if the state of the office changes (open/closed) it will tweet about it
@@ -14,6 +14,7 @@ The whole project consists of three aspects:
 
 * Arduino with photosensor
  * measures the photons and sends the data to the Raspberry Pi
+ * measures the heat
 * Raspberry Pie
  * Posts all the relevant things to the webservice
 * Webservice
