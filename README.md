@@ -21,6 +21,7 @@ The whole project consists of three aspects
 ** has nice graphic representation of the aggregated data
 
 The Twitter account is: https://twitter.com/LGSHH
+
 The webserive can be found: http://lgs-hh.geheimorganisation.org/
 
 
