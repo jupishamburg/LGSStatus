@@ -1,7 +1,7 @@
 import bottle, time
 from LGSStatus import app, config, cur, db, helpers
 
-@app.route("/append/<type>")
+@app.route("/append/<type>", method="POST")
 def insert(type):
 	if not bottle.request.query.key in config["keys"]:
 		bottle.abort(403, "Security token not given")
@@ -19,7 +19,6 @@ def insert(type):
 	))
 	db.commit()
 
-	# door tweet thingy
 	if type == "door":
 		helpers.doorTweet()
 
