@@ -1,5 +1,5 @@
 import bottle, time
-from LGSStatus import app, config, dbManager, helpers
+from LGSStatus import app, config, dbManager, twitter
 
 @app.post("/append/<type>")
 def insert(type):
@@ -18,6 +18,6 @@ def insert(type):
 	dbManager.setValueOfType(type, value)
 
 	if type == "door":
-		helpers.doorTweet()
+		twitter.doorTweet()
 
 	return type + ":" + value

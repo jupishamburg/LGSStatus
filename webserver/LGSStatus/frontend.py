@@ -1,5 +1,5 @@
 import bottle
-from LGSStatus import app, helpers, dbManager
+from LGSStatus import app, twitterHandler, dbManager
 
 @app.route("/")
 def index():

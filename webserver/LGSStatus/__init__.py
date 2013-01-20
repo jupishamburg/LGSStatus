@@ -1,5 +1,5 @@
 import bottle, sqlite3, json
-from LGSStatus import dbManager
+from LGSStatus import dbManager, twitterHandler
 
 config = json.loads(open("config.json", "r").read())
 db = sqlite3.connect(config["db"])
@@ -8,8 +8,7 @@ app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
-from LGSStatus import helpers
-twitter = helpers.connectToTwitter()
+twitter = twitterHandler.TwitterHandler()
 
 @app.route("/static/<filepath:path>")
 def static(filepath):
