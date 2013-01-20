@@ -4,10 +4,13 @@ class DbManager(object):
 	def __init__(self, db):
 		self.db = db
 		self.dbcursor = db.cursor
+		
 	def getLastTwoDoorStates(self):
 		self.dbcursor.execute("SELECT * FROM door ORDER BY time DESC LIMIT 2;")
 		states = self.dbcursor.fetchall()
+		
 		return states
+		
 	def getTypeValues(self, type, limit):
 		out = "["
 		self.dbcursor.execute("SELECT * FROM {0} ORDER BY time DESC LIMIT {1};".format(
