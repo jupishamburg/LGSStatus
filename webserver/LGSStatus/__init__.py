@@ -1,8 +1,9 @@
 import bottle, sqlite3, json
+from LGSStatus import dbManager
 
 config = json.loads(open("config.json", "r").read())
 db = sqlite3.connect(config["db"])
-cur = db.cursor()
+dbManager = dbManager.DbManager(db)
 app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")

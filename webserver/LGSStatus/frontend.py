@@ -1,14 +1,14 @@
 import bottle
-from LGSStatus import app, helpers
+from LGSStatus import app, helpers, dbManager
 
 @app.route("/")
 def index():
 	dataOfToday = {
-		"clients":		helpers.getTypeVals("clients", 300),
-		"temperature":	helpers.getTypeVals("temperature", 300),
-		"door":			helpers.getTypeVals("door", 300)
+		"clients":dbManager.getTypeVals("clients", 300),
+		"temperature":dbManager.getTypeVals("temperature", 300),
+		"door":dbManager.getTypeVals("door", 300)
 	}
 
-	isDoorOpen = (helpers.getLastVal("door")[1] == True)
+	isDoorOpen = (dbManager.getLastVal("door")[1] == True)
 
 	return bottle.jinja2_template("index.html", dataOfToday=dataOfToday, isDoorOpen=isDoorOpen)

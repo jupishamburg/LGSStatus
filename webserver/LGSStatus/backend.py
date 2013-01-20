@@ -1,5 +1,5 @@
 import bottle, time
-from LGSStatus import app, config, cur, db, helpers
+from LGSStatus import app, config, dbManager, helpers
 
 @app.post("/append/<type>")
 def insert(type):
@@ -12,15 +12,10 @@ def insert(type):
 	if type not in config["types"]:
 		bottle.abort(400, "Invalid type")
 
-
 	if not value:
 		bottle.abort(400, "Missing value parameter")
 
-	cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
-		value,
-		int(time.time())
-	))
-	db.commit()
+	dbManager.setValueOfType(type, value)
 
 	if type == "door":
 		helpers.doorTweet()
