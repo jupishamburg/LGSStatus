@@ -5,8 +5,8 @@ class TwitterHandler(object):
 		self.config = config
 		self.dbManager = dbManager
 
-		auth = tweepy.OAuthHandler(config["twitter"]["consumer-key"], config["twitter"]["consumer-secret"])
-		auth.set_access_token(config["twitter"]["access-token"], config["twitter"]["access-secret"])
+		auth = tweepy.OAuthHandler(self.config["twitter"]["consumer-key"], config["twitter"]["consumer-secret"])
+		auth.set_access_token(self.config["twitter"]["access-token"], config["twitter"]["access-secret"])
 
 		self.tweepy = tweepy.API(auth)
 
@@ -14,9 +14,9 @@ class TwitterHandler(object):
 		self._setLastTwoDoorStates()
 		if self._doorStateHasChanged():
 			if self._doorIsOpen():
-				self.tweepy.update_status(random.choice(config["twitter"]["tweets"]["opened"]))
+				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["opened"]))
 			else:
-				self.tweepy.update_status(random.choice(config["twitter"]["tweets"]["closed"]))
+				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["closed"]))
 
 	def _setLastTwoDoorStates(self):
 		self.states = dbManager.getLastTwoDoorStates()
