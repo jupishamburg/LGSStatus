@@ -11,18 +11,15 @@ class TwitterHandler(object):
 		self.tweepy = tweepy.API(auth)
 
 	def tweetAboutDoorStateIfChanged(self):
-		self._setLastTwoDoorStates()
+		self.lastTwoDoorStates = self.dbManager.getLastTwoDoorStates()
 		if self._doorStateHasChanged():
 			if self._doorIsOpen():
 				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["opened"]))
 			else:
 				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["closed"]))
 
-	def _setLastTwoDoorStates(self):
-		self.states = dbManager.getLastTwoDoorStates()
-
 	def _doorStateHasChanged(self):
-		return self.states[0][1] != self.states[1][1]
+		return self.lastTwoDoorStates[0][1] != self.lastTwoDoorStates[1][1]
 
 	def _doorIsOpen(self):
-		return self.states[0][1] > self.states[1][1]
+		return self.lastTwoDoorStates[0][1] > self.lastTwoDoorStates[1][1]
