@@ -8,7 +8,7 @@ app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
-twitter = twitterHandler.TwitterHandler()
+twitter = twitterHandler.TwitterHandler(config, dbManager)
 
 @app.route("/static/<filepath:path>")
 def static(filepath):

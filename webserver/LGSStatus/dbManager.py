@@ -3,7 +3,7 @@ import time
 class DbManager(object):
 	def __init__(self, db):
 		self.db = db
-		self.dbcursor = db.cursor
+		self.dbcursor = db.cursor()
 		
 	def getLastTwoDoorStates(self):
 		self.dbcursor.execute("SELECT * FROM door ORDER BY time DESC LIMIT 2;")

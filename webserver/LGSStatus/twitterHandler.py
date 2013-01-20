@@ -1,8 +1,10 @@
 import tweepy, random
-from LGSStatus import config, dbManager
 
 class TwitterHandler(object):
-	def __init__(self):
+	def __init__(self, config, dbManager):
+		self.config = config
+		self.dbManager = dbManager
+
 		auth = tweepy.OAuthHandler(config["twitter"]["consumer-key"], config["twitter"]["consumer-secret"])
 		auth.set_access_token(config["twitter"]["access-token"], config["twitter"]["access-secret"])
 

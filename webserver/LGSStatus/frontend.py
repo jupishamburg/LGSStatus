@@ -4,9 +4,9 @@ from LGSStatus import app, twitterHandler, dbManager
 @app.route("/")
 def index():
 	dataOfToday = {
-		"clients":dbManager.getTypeVals("clients", 300),
-		"temperature":dbManager.getTypeVals("temperature", 300),
-		"door":dbManager.getTypeVals("door", 300)
+		"clients":dbManager.getTypeValues("clients", 300),
+		"temperature":dbManager.getTypeValues("temperature", 300),
+		"door":dbManager.getTypeValues("door", 300)
 	}
 
 	isDoorOpen = (dbManager.getLastVal("door")[1] == True)
