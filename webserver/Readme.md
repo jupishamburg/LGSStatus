@@ -1,6 +1,7 @@
 # How to run LgsStatePlotter locally:
 
 * pip install -r requirements.txt
+* gem install sass
 * wget http://lgs-hh.geheimorganisation.org/lgs.db
 * cp config.json.example config.json
 * Maybe you want to edit config.json with editor of your choice ...
