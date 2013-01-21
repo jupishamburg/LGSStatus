@@ -3,3 +3,5 @@ lgs.db
 config.json
 .*.sw?
 .sw?
+.sass-cache
+webserver/LGSStatus/static/css/lgsstatus.css
