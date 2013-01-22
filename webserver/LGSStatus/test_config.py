@@ -24,5 +24,4 @@ class TestTweets(unittest.TestCase):
 		for tweet in self.doorOpenTweets:
 			self.assertTrue(self.openDoorHash in tweet, tweet)
 	if __name__ == '__main__':
-		print('fnord')
 		unittest.main(verbosity=2)
