@@ -28,12 +28,15 @@ class DbManager(object):
 		# delete the last comma
 		return out[0:-1] + "]"
 
-	def getLastVal(self, type):
+	def getCurrentValue(self, type):
 		self.dbcursor.execute("SELECT * FROM {0} ORDER BY time DESC LIMIT 1;".format(
 			type
 		))
 
 		return self.dbcursor.fetchone()
+
+	def isDoorOpen(self):
+		return self.getCurrentValue("door")[1] == True
 
 	def setValueOfType(self, type, value):
 		self.dbcursor.cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (

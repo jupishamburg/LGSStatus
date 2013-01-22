@@ -9,6 +9,8 @@ def index():
 		"door":dbManager.getTypeValues("door", 300)
 	}
 
-	isDoorOpen = (dbManager.getLastVal("door")[1] == True)
-
-	return bottle.jinja2_template("index.html", dataOfToday=dataOfToday, isDoorOpen=isDoorOpen)
+	return bottle.jinja2_template(
+		"index.html",
+		dataOfToday = dataOfToday,
+		isDoorOpen = dbManager.isDoorOpen()
+	)
