@@ -15,7 +15,7 @@ The whole project consists of three aspects:
 * Arduino with photosensor
  * measures the photons and sends the data to the Raspberry Pi
  * measures the heat
-* Raspberry Pie
+* Raspberry Pi
  * Posts all the relevant things to the webservice
 * Webservice
  * stores all the data in a SQLite database
