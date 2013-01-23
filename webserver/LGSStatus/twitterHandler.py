@@ -1,8 +1,9 @@
 import tweepy, random
 
 class TwitterHandler(object):
-	def __init__(self, config, dbManager):
+	def __init__(self, config, tweets, dbManager):
 		self.config = config
+		self.tweets = tweets
 		self.dbManager = dbManager
 
 		auth = tweepy.OAuthHandler(self.config["twitter"]["consumer-key"], config["twitter"]["consumer-secret"])
@@ -14,9 +15,9 @@ class TwitterHandler(object):
 		self.lastTwoDoorStates = self.dbManager.getLastTwoDoorStates()
 		if self._doorStateHasChanged():
 			if self._doorIsOpen():
-				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["opened"]))
+				self.tweepy.update_status(random.choice(self.tweets["tweets"]["opened"]))
 			else:
-				self.tweepy.update_status(random.choice(self.config["twitter"]["tweets"]["closed"]))
+				self.tweepy.update_status(random.choice(self.tweets["tweets"]["closed"]))
 
 	def _doorStateHasChanged(self):
 		return self.lastTwoDoorStates[0][1] != self.lastTwoDoorStates[1][1]

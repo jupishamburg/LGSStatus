@@ -2,13 +2,15 @@ import bottle, sqlite3, json
 from LGSStatus import dbManager, twitterHandler
 
 config = json.loads(open("config.json", "r").read())
+tweets = json.loads(open("tweets.json", "r").read())
+
 db = sqlite3.connect(config["db"])
 dbManager = dbManager.DbManager(db)
 app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
-twitter = twitterHandler.TwitterHandler(config, dbManager)
+twitter = twitterHandler.TwitterHandler(config, tweets, dbManager)
 
 bashCommand = "sass --watch ./LGSStatus/static/css/lgsstatus.sass:./LGSStatus/static/css/lgsstatus.css"
 import subprocess

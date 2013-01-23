@@ -4,9 +4,9 @@ class TestTweets(unittest.TestCase):
 		self.closedDoorHash = "#LGSgeschlossen"
 		self.openDoorHash = "#LGSoffen"
 
-		self.config = json.loads(open("../config.json", "r").read(), "utf-8")
-		self.doorOpenTweets = self.config["twitter"]["tweets"]["opened"]
-		self.doorClosedTweets = self.config["twitter"]["tweets"]["closed"]
+		self.config = json.loads(open("tweets.json", "r").read(), "utf-8")
+		self.doorOpenTweets = self.config["tweets"]["opened"]
+		self.doorClosedTweets = self.config["tweets"]["closed"]
 		
 	def test_tweets_not_over_140_digits(self):
 		for tweet in self.doorOpenTweets:

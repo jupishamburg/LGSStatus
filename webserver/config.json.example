@@ -14,51 +14,5 @@
 		"consumer-secret":	"eiphohr5thah2iepaf0vaiQuoos1eini",
 		"access-token":		"ToogeeCh0tae7oyeeB3daibas9Phahoy",
 		"access-secret":	"eog2ooqu1muo7ooMoBooj5Ba2iZoh6eW",
-		
-		"tweets": {
-			"opened": [
-				"Die LGS ist jetzt offen. #LGSoffen",
-				"Wer ist denn hier, naja, jetzt ist hier offen. #LGSoffen",
-				"Photonen, Photonen, offen ist hier. #LGSoffen",
-				"Das Licht ist hier angegangen. :) #LGSoffen",
-				"Endlich bin ich nicht mehr so einsam hier. LGS ist offen. #LGSoffen",
-				"Ist das jetzt die nächste Party oder wird gearbeitet? #LGSoffen",
-				"I smell people. #LGSoffen",
-				"Pirates doing politics. #LGSoffen",
-				"Serious business is going on. #LGSoffen",
-				"Komm se ren, könn se rausgucken. #LGSoffen",
-				"Ich sehe Menschen! Ekelig … Aber Hey: Menschen sind auch nur Bots … #LGSoffen",
-				"Und Bot sprach: Es werde Licht! #LGSoffen",
-				"Termine und Öffnungszeiten entnehmen sie bitte dem Kalender auf unserer … geöffnet. #LGSoffen",
-				"Eichhörnchen! Überall! #LGSoffen",
-				"Boolean isDoorOpen = true #LGSoffen",
-				"Ein Kommen und Gehen hier. Die Tür ist offen sichtlich … #LGSoffen",
-				"Und täglich grüßt das Mumbletier … Es murmelt wieder in der LGS. #LGSoffen",
-				"Boolean isDoorClosed = 42 #LGSoffen",
-				"Nachts träume ich von einer Türsteher-Karriere: Bei den Piraten gibt es einfach kein \"Du kommst hier nicht rein\" Jeder kommt rein! #LGSoffen",
-				"\"Das Codewort bitte.\" - \"Bitte.\" - \"Treten Sie ein!\" #LGSoffen"
-			],
-			"closed": [
-				"Die LGS ist jetzt geschlossen. #LGSgeschlossen",
-				"Das Licht ist aus, jeder ist zu Haus … #LGSgeschlossen",
-				"Bis auf meine LED leuchtet hier nichts mehr … #LGSgeschlossen",
-				"Alone in the dark. #LGSgeschlossen",
-				"Hm, wann wohl jemand wieder vorbeikommt? #LGSgeschlossen",
-				"Immerhin hab ich noch Strom, auch wenn's dunkel ist. #LGSgeschlossen",
-				"Heute mal wieder produktiv gewesen? #LGSgeschlossen",
-				"Apokalypse oder ist nur das Licht aus? #LGSgeschlossen",
-				"So ganz ohne Licht hab ich schon so'n bisschen Angst. #LGSgeschlossen",
-				"Die Ruhestörung* in der LGS wurde beendet. Bot over. #LGSgeschlossen",
-				"Es kann nur einen geben! (Ja, ich gebe zu: Ich bin oft sehr allein. Aber heute der letzte: Die kleinen Siege des Alltags… Hach. #LGSgeschlossen)",
-				"Daisy, Daisy, give me your answer, do, I'm half crazy all for the love of you. http://www.youtube.com/watch?v=hchUl3QlJZE #LGSgeschlossen",
-				"Schrödingers Katze in der LGS gesichtet. Leider zu dunkel für Photos … #LGSgeschlossen",
-				"Mein Schlüsselerlebnis? Täglich min. zwei Mal … Wäre ich ein Mensch, ich wäre euer Zarathustra. #LGSgeschlossen",
-				". | Online-Treffpunkt #LGSgeschlossen",
-				"Piraten vor Ort. Vermute kons-pirat-ive Geheimtreffen. #Transparenztweet #LGSgeschlossen",
-				"Man hat mich eingeschlossen! Immer auf die Kleinen … Weine jetzt bis morgen früh durch. #LGSgeschlossen",
-				"Freibier in der LGS! Oh, Tür ist leider zu. Sorry. #LGSgeschlossen",
-				"Ein Koma und Gähnen hier. Ich glaube, jetzt ist Feierabend. #LGSgeschlossen"
-			]
-		}
 	}
 }
