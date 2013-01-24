@@ -15,9 +15,9 @@
 			data: {}
 		};
 
-		lgs.data.clients = {{ dataOfToday["clients"] }};
-		lgs.data.temperature = {{ dataOfToday["temperature"] }};
-		lgs.data.doorState = {{ dataOfToday["door"] }};
+		lgs.data.clients = {{ data_of_today.clients }};
+		lgs.data.temperature = {{ data_of_today.temperature }};
+		lgs.data.doorState = {{ data_of_today.door }};
 	</script>
 	<script type="text/javascript" src="../static/js/lgsStatePlotter.js"></script>
 </head>
@@ -25,7 +25,7 @@
 <header>
 	<h1>LGS-Status
 		<small>
-			{% if isDoorOpen %}
+			{% if is_door_open %}
 			<i style="color:#A0B046;" class="icon-asterisk"></i> offen.
 			{% else %}
 			<i style="color:#F24E4E;" class="icon-ban-circle"></i> zu.

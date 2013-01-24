@@ -1,22 +1,29 @@
 #!/usr/bin/env python2
-import serial, time, sys, requests
-def postDoorState(baseUrl, doorState, securityToken):
+
+import sys
+import time
+
+import serial
+import requests
+
+def post_door_state(base_url, door_state, security_token):
 	params = {
-	'value': doorState,
-	'key': securityToken
+		'value': door_state,
+		'key': security_token
 	}
-	requests.post(baseUrl + "/door", params)
-def postTemperature(baseUrl, temperature, securityToken):
+	requests.post(base_url + "/door", params)
+
+def post_temperature(base_url, temperature, security_token):
 	params = {
-	'value': temperature,
-	'key': securityToken
+		'value': temperature,
+		'key': security_token
 	}
-	requests.post(baseUrl + "/temperature", params)
+	requests.post(base_url + "/temperature", params)
 
 # TODO: This should be mockable
 if True:
-	baseUrl = sys.argv[1]
-	securityToken = sys.argv[2]
+	base_url = sys.argv[1]
+	security_token = sys.argv[2]
 	port = sys.argv[3]
 
 	s = serial.Serial(port=port)
@@ -27,15 +34,16 @@ if True:
 	if s.write("k") is 1:
 		v = s.readline().replace("\r\n", "").split(",")
 
-	doorState = "1" if (int(v[1]) > 150) else "0"
+	door_state = "1" if (int(v[1]) > 150) else "0"
 	temperature = int(v[0]) - 12 # dirty hack because of electrical problems
 else:
 	#Temporary Mock
 	print "Should not be run on live server :D"
-	baseUrl = "http://0.0.0.0:8080/append"
-	doorState = "1"
+	base_url = "http://0.0.0.0:8080/append"
+	door_state = "1"
 	temperature = "52"
-	securityToken = "ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
+	security_token = "ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
 
-postDoorState(baseUrl, doorState, securityToken)
-postTemperature(baseUrl, temperature, securityToken)
+post_door_state(base_url, door_state, security_token)
+post_temperature(base_url, temperature, security_token)
+

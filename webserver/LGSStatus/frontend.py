@@ -1,16 +1,16 @@
 import bottle
-from LGSStatus import app, twitterHandler, dbManager
+from LGSStatus import app, twitter_handler, db_manager
 
 @app.route("/")
 def index():
-	dataOfToday = {
-		"clients":dbManager.getTypeValues("clients", 300),
-		"temperature":dbManager.getTypeValues("temperature", 300),
-		"door":dbManager.getTypeValues("door", 300)
+	data_of_today = {
+		"clients": db_manager.get_type_values("clients", 300),
+		"temperature": db_manager.get_type_values("temperature", 300),
+		"door": db_manager.get_type_values("door", 300)
 	}
 
 	return bottle.jinja2_template(
 		"index.html",
-		dataOfToday = dataOfToday,
-		isDoorOpen = dbManager.isDoorOpen()
+		data_of_today = data_of_today,
+		is_door_open = db_manager.is_door_open()
 	)

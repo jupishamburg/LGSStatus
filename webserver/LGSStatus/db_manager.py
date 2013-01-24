@@ -1,17 +1,17 @@
 import time
 
-class DbManager(object):
+class DatabaseManager(object):
 	def __init__(self, db):
 		self.db = db
 		self.dbcursor = db.cursor()
 		
-	def getLastTwoDoorStates(self):
+	def get_last_two_door_states(self):
 		self.dbcursor.execute("SELECT * FROM door ORDER BY time DESC LIMIT 2;")
 		states = self.dbcursor.fetchall()
 		
 		return states
 		
-	def getTypeValues(self, type, limit):
+	def get_type_values(self, type, limit):
 		out = "["
 		self.dbcursor.execute("SELECT * FROM {0} ORDER BY time DESC LIMIT {1};".format(
 			type,
@@ -28,17 +28,17 @@ class DbManager(object):
 		# delete the last comma
 		return out[0:-1] + "]"
 
-	def getCurrentValue(self, type):
+	def get_current_value(self, type):
 		self.dbcursor.execute("SELECT * FROM {0} ORDER BY time DESC LIMIT 1;".format(
 			type
 		))
 
 		return self.dbcursor.fetchone()
 
-	def isDoorOpen(self):
+	def is_door_open(self):
 		return self.getCurrentValue("door")[1] == True
 
-	def setValueOfType(self, type, value):
+	def set_value_of_type(self, type, value):
 		self.dbcursor.cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
 		value,
 		int(time.time())

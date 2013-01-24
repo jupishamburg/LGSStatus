@@ -1,5 +1,5 @@
 import bottle, sqlite3, json
-from LGSStatus import dbManager, twitterHandler
+from LGSStatus import db_manager, twitter_handler
 
 with open("config.json") as config_fh:
 	config = json.load(config_fh)
@@ -8,16 +8,16 @@ with open("tweets.json") as tweets_fh:
 	tweets = json.load(tweets_fh)
 
 db = sqlite3.connect(config["db"])
-dbManager = dbManager.DbManager(db)
+db_manager = db_manager.DatabaseManager(db)
 app = bottle.Bottle()
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
-twitter = twitterHandler.TwitterHandler(config, tweets, dbManager)
+twitter = twitter_handler.TwitterHandler(config, tweets, db_manager)
 
-bashCommand = "sass --watch ./LGSStatus/static/css/lgsstatus.sass:./LGSStatus/static/css/lgsstatus.css"
+bash_command = "sass --watch ./LGSStatus/static/css/lgsstatus.sass:./LGSStatus/static/css/lgsstatus.css"
 import subprocess
-process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
 
 @app.route("/static/<filepath:path>")
 def static(filepath):
@@ -25,3 +25,4 @@ def static(filepath):
 
 import LGSStatus.frontend
 import LGSStatus.backend
+
