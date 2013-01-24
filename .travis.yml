@@ -3,5 +3,16 @@ python:
   - "2.7"
 # command to install dependencies
 install: "pip install -r webserver/requirements.txt --use-mirrors"
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - philipp.kretzschmar+travisLgsStatus@gmail.com
+  email:
+    on_success: change
+    on_failure: always
 # command to run tests
-script: cd webserver && python -m unittest discover
+script:
+  - echo "running tests ..."
+  - cd webserver && python -m unittest discover
