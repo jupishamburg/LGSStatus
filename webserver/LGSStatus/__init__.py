@@ -1,8 +1,11 @@
 import bottle, sqlite3, json
 from LGSStatus import dbManager, twitterHandler
 
-config = json.loads(open("config.json", "r").read())
-tweets = json.loads(open("tweets.json", "r").read())
+with open("config.json") as config_fh:
+	config = json.load(config_fh)
+
+with open("tweets.json") as tweets_fh:
+	tweets = json.load(tweets_fh)
 
 db = sqlite3.connect(config["db"])
 dbManager = dbManager.DbManager(db)
