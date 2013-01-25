@@ -3,7 +3,6 @@ LGSStatus
 
 [![Build Status](https://travis-ci.org/jupishamburg/LGSStatus.png)](https://travis-ci.org/jupishamburg/LGSStatus)
 
-
 This is a project of the youth organization Junge Piraten Hamburg (Young Pirates Hamburg).
 
 In times of the Internet of things, we made made our branch office realize:
