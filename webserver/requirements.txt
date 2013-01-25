@@ -4,4 +4,3 @@ tornado==2.4.1
 jinja2
 requests
 mock
-unittest
