@@ -21,7 +21,7 @@ class TestTweets(unittest.TestCase):
 		for tweet in self.doorClosedTweets:
 			self.assertTrue(self.closedDoorHash in tweet, tweet)
 			
-	def testOpendoorContainsHash(self):
+	def test_open_tweets_contain_hash(self):
 		for tweet in self.doorOpenTweets:
 			self.assertTrue(self.openDoorHash in tweet, tweet)
 			
