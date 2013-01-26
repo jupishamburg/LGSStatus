@@ -7,12 +7,12 @@
 		"temperature"
 	],
 	"keys": [
-		"ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
+		"YOUR_PERSONAL_WEBSERVER_ACCESS_TOKEN"
 	],
 	"twitter": {
-		"consumer-key":		"nuw2nieJeth7ohsho0ex3Ahfaer9ieki",
-		"consumer-secret":	"eiphohr5thah2iepaf0vaiQuoos1eini",
-		"access-token":		"ToogeeCh0tae7oyeeB3daibas9Phahoy",
-		"access-secret":	"eog2ooqu1muo7ooMoBooj5Ba2iZoh6eW",
+		"consumer-key":	"YOUR_CONSUMER_KEY",
+		"consumer-secret":YOUR_CONSUMER_SECRET",
+		"access-token":	"YOUR_ACCESS_TOKEN",
+		"access-secret":"YOUR_ACCESS_SECRET",
 	}
 }

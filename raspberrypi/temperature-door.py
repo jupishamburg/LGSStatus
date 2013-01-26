@@ -42,7 +42,7 @@ else:
 	base_url = "http://0.0.0.0:8080/append"
 	door_state = "1"
 	temperature = "52"
-	security_token = "ieSohc0oochie6Reequungoo7quoza8NuRaing9una"
+	security_token = "YOUR_PERSONAL_WEBSERVER_ACCESS_TOKEN"
 
 post_door_state(base_url, door_state, security_token)
 post_temperature(base_url, temperature, security_token)
