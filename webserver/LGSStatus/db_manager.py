@@ -39,7 +39,7 @@ class DatabaseManager(object):
 		return self.getCurrentValue("door")[1] == True
 
 	def set_value_of_type(self, type, value):
-		self.dbcursor.cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
+		self.dbcursor.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
 		value,
 		int(time.time())
 		))
