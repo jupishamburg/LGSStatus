@@ -36,7 +36,7 @@ class DatabaseManager(object):
 		return self.dbcursor.fetchone()
 
 	def is_door_open(self):
-		return self.getCurrentValue("door")[1] == True
+		return self.get_current_value("door")[1] == True
 
 	def set_value_of_type(self, type, value):
 		self.dbcursor.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
