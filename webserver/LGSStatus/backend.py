@@ -18,6 +18,6 @@ def insert(type):
 	db_manager.set_value_of_type(type, value)
 
 	if type == "door":
-		twitter.door_tweet()
+		twitter.tweet_about_door_state_if_changed()
 
 	return type + ":" + value
