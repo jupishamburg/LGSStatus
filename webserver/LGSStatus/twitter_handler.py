@@ -12,7 +12,7 @@ class TwitterHandler(object):
 		self.tweepy = tweepy.API(auth)
 
 	def tweet_about_door_state_if_changed(self):
-		self.last_two_door_states = self.dbManager.get_last_two_door_states()
+		self.last_two_door_states = self.db_manager.get_last_two_door_states()
 		if self._door_state_has_changed():
 			if self._door_is_open():
 				self.tweepy.update_status(random.choice(self.tweets["tweets"]["opened"]))
