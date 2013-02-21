@@ -19,6 +19,9 @@ class TwitterHandler(object):
 			else:
 				self.tweepy.update_status(random.choice(self.tweets["tweets"]["closed"]))
 
+	def tweet_status_unknown(self):
+		self.tweepy.update_status("Technische Probleme. Status der LGS ist unbekannt :(")
+
 	def _door_state_has_changed(self):
 		return self.last_two_door_states[0][1] != self.last_two_door_states[1][1]
 
