@@ -45,3 +45,11 @@ class DatabaseManager(object):
 		))
 
 		self.db.commit()
+
+	def get_last_door_timestamp(self):
+		self.dbcursor.execute("SELECT time FROM door LIMIT 1;")
+
+		for row in self.dbcursor:
+			self.timestamp = row[0]
+
+		return self.timestamp

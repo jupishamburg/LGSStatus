@@ -1,5 +1,5 @@
 import bottle, time
-from LGSStatus import app, config, db_manager, twitter
+from LGSStatus import app, config, db_manager, twitter, watch
 
 @app.post("/append/<type>")
 def insert(type):
@@ -19,5 +19,6 @@ def insert(type):
 
 	if type == "door":
 		twitter.tweet_about_door_state_if_changed()
+		watch.set_status_to_working()
 
 	return type + ":" + value

@@ -1,8 +1,10 @@
 import bottle
-from LGSStatus import app, twitter_handler, db_manager
+from LGSStatus import app, db_manager, watch
 
 @app.route("/")
 def index():
+	watch.check_if_kaputt()
+
 	data_of_today = {
 		"clients": db_manager.get_type_values("clients", 300),
 		"temperature": db_manager.get_type_values("temperature", 300),
