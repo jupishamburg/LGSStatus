@@ -14,10 +14,8 @@ class Watcher(object):
 		if not self._is_kaput():
 			if not self.was_door_state_updated_within_last_hour():
 				self._set_status_to_kaput()
-				try:
-					self.twitter.tweet_status_unknown()
-				except Exception:
-					pass
+				self.twitter.tweet_status_unknown()
+
 		Timer(self.watcher_interval, self.check_if_kaput).start()
 
 	def set_status_to_working(self):
