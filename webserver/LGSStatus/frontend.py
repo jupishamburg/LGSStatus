@@ -3,7 +3,7 @@ from LGSStatus import app, db_manager, watch
 
 @app.route("/")
 def index():
-	watch.check_if_kaputt()
+	watch.check_if_kaput()
 
 	data_of_today = {
 		"clients": db_manager.get_type_values("clients", 300),

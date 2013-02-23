@@ -1,4 +1,4 @@
-import bottle, sqlite3, json, time
+import bottle, sqlite3, json
 from LGSStatus import db_manager, watcher, twitter_handler
 
 with open("config.json") as config_fh:
@@ -25,4 +25,3 @@ def static(filepath):
 
 import LGSStatus.frontend
 import LGSStatus.backend
-

@@ -1,4 +1,4 @@
-import bottle, time
+import bottle
 from LGSStatus import app, config, db_manager, twitter, watch
 
 @app.post("/append/<type>")
