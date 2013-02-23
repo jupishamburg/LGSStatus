@@ -3,8 +3,6 @@ from LGSStatus import app, db_manager, watch
 
 @app.route("/")
 def index():
-	watch.check_if_kaput()
-
 	data_of_today = {
 		"clients": db_manager.get_type_values("clients", 300),
 		"temperature": db_manager.get_type_values("temperature", 300),
@@ -15,4 +13,12 @@ def index():
 		"index.html",
 		data_of_today = data_of_today,
 		is_door_open = db_manager.is_door_open()
+	)
+
+@app.get("/meta-status")
+def meta_status():
+	watch.check_if_kaput()
+	return bottle.jinja2_template(
+		"meta_status.html",
+		is_kaput = watch._is_kaput()
 	)
