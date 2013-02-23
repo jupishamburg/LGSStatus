@@ -49,4 +49,4 @@ class TwitterHandler(object):
 		return self.last_two_door_states[0][1] != self.last_two_door_states[1][1]
 
 	def _door_is_open(self):
-		return self.last_two_door_states[0][1] > self.last_two_door_states[1][1]
+		self.db_manager.is_door_open()
