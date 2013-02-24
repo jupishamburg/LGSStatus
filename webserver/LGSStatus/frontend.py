@@ -1,4 +1,4 @@
-import bottle
+import bottle, datetime
 from LGSStatus import app, db_manager, watch
 
 @app.route("/")
@@ -12,7 +12,9 @@ def index():
 	return bottle.jinja2_template(
 		"index.html",
 		data_of_today = data_of_today,
-		is_door_open = db_manager.is_door_open()
+		is_door_open = db_manager.is_door_open(),
+		last_updated = datetime.datetime.fromtimestamp(db_manager.get_last_door_timestamp()).strftime("%d.%m.%Y %H:%M")
+
 	)
 
 @app.get("/meta-status")
