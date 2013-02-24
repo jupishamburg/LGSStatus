@@ -17,11 +17,6 @@ class TwitterHandler(object):
 		if self._door_state_has_changed():
 			self.tweet_door_state()
 
-		# TODO: Should be moved somewhere else
-		# It's a hack to force a tweet after restart of service
-		if self.last_tweeted is None:
-			self.tweet_door_state()
-
 	def tweet_door_state(self):
 		if self._door_is_open():
 			self.tweet_door_is_open()
@@ -42,7 +37,7 @@ class TwitterHandler(object):
 			self.tweepy.update_status(message)
 			self.last_tweeted = last_tweeted
 		except Exception:
-			#TODO: Some Exception handling that is not this obsoloete :D
+			#TODO: Some Exception handling that is not this obsolete :D
 			pass
 
 	def _door_state_has_changed(self):
