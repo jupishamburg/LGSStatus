@@ -13,8 +13,8 @@ def index():
 		"index.html",
 		data_of_today = data_of_today,
 		is_door_open = db.is_door_open(),
-		last_updated = datetime.datetime.fromtimestamp(db.get_last_door_timestamp()).strftime("%d.%m.%Y %H:%M")
-
+		last_updated = datetime.datetime.fromtimestamp(db.get_last_door_timestamp()).strftime("%d.%m.%Y %H:%M"),
+		is_kaput = not db.was_door_state_updated_within_last_hour()
 	)
 
 @app.get("/meta-status")

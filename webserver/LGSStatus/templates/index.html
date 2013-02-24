@@ -25,11 +25,15 @@
 <header>
 	<h1>LGS-Status
 		<small>
+		{% if not is_kaput %}
 			{% if is_door_open %}
 			<i style="color:#A0B046;" class="icon-asterisk"></i> offen.
 			{% else %}
 			<i style="color:#F24E4E;" class="icon-ban-circle"></i> zu.
 			{% endif %}
+		{% else %}
+			<i style="color:#ff8c00;" class="icon-bolt"></i> unbekannt :(
+		{% endif %}
 		</small>
 	</h1>
 	<aside id="icons">
