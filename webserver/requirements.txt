@@ -1,6 +1,6 @@
-tweepy==1.12
-bottle==0.10.11
-tornado==2.4.1
+tweepy
+bottle
+tornado
 jinja2
 requests
 mock
