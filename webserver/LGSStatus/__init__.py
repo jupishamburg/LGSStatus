@@ -1,4 +1,4 @@
-import bottle, sqlite3, json
+import bottle, json
 from LGSStatus import db_manager, watcher, twitter_handler
 
 with open("config.json") as config_fh:
@@ -8,10 +8,10 @@ with open("tweets.json") as tweets_fh:
 	tweets = json.load(tweets_fh)
 
 app = bottle.Bottle()
-db = sqlite3.connect(config["db"])
-db_manager = db_manager.DatabaseManager(db)
-twitter = twitter_handler.TwitterHandler(config, tweets, db_manager)
-watch = watcher.Watcher(db_manager=db_manager, twitter=twitter)
+db = db_manager.DatabaseManager(config["db"])
+twitter = twitter_handler.TwitterHandler(config, tweets, db)
+
+watch = watcher.Watcher(twitter, config["db"])
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 

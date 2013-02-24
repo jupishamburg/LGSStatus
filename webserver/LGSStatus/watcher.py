@@ -1,18 +1,19 @@
-import time
 from threading import Timer
+from LGSStatus import db_manager
 
 class Watcher(object):
-	def __init__(self, db_manager, twitter):
-		self.db_manager = db_manager
+	def __init__(self, twitter, db_config):
+		self.config = db_config
 		self.twitter = twitter
 		self.status = "working"
 		self.watcher_interval = 2 * 60 * 60
-
 		self.check_if_kaput()
 
 	def check_if_kaput(self):
 		if not self._is_kaput():
-			if not self.was_door_state_updated_within_last_hour():
+			# New Instance as same Sqlite connection  cannot be shared between threads
+			db = db_manager.DatabaseManager(self.config)
+			if not db.was_door_state_updated_within_last_hour():
 				self._set_status_to_kaput()
 				self.twitter.tweet_status_unknown()
 
@@ -26,10 +27,3 @@ class Watcher(object):
 
 	def _is_kaput(self):
 		return self.status == "kaput"
-
-	def was_door_state_updated_within_last_hour(self):
-		current_time = time.time()
-		last_update_time = self.db_manager.get_last_door_timestamp()
-		diff = current_time - last_update_time
-
-		return diff < 3600
