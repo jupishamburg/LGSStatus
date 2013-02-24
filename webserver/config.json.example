@@ -11,8 +11,8 @@
 	],
 	"twitter": {
 		"consumer-key":	"YOUR_CONSUMER_KEY",
-		"consumer-secret":YOUR_CONSUMER_SECRET",
+		"consumer-secret": "YOUR_CONSUMER_SECRET",
 		"access-token":	"YOUR_ACCESS_TOKEN",
-		"access-secret":"YOUR_ACCESS_SECRET",
+		"access-secret": "YOUR_ACCESS_SECRET"
 	}
 }
