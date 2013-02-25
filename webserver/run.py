@@ -26,12 +26,5 @@ if (args['force_status_tweet_on_start'] is True):
 	print("Force Tweet about Door State")
 	twitter.tweet_door_state()
 
-if (args['dev'] is True):
-	def pseudoTweet(message, mode):
-		print(message)
-		print(mode)
-
-	twitter.tweet = pseudoTweet
-
 if __name__ == "__main__":
 	bottle.run(app, host="0.0.0.0", port="8080", server="tornado")
