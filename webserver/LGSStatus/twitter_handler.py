@@ -1,4 +1,5 @@
 import tweepy, random
+from termcolor import colored
 
 class TwitterHandler(object):
 	def __init__(self, config, tweets, db_manager):
@@ -33,6 +34,7 @@ class TwitterHandler(object):
 		self.tweet("Technische Probleme. Status der LGS ist unbekannt :(", "kaput")
 
 	def tweet(self, message, last_tweeted = None):
+		print(colored("Real Tweeting \n", 'green') + colored(message, 'yellow') + "\n" + last_tweeted)
 		try:
 			self.tweepy.update_status(message)
 			self.last_tweeted = last_tweeted
@@ -45,3 +47,7 @@ class TwitterHandler(object):
 
 	def _door_is_open(self):
 		return self.db_manager.is_door_open()
+
+class DevTwitterHandler(TwitterHandler):
+	def tweet(self, message, last_tweeted = None):
+		print(colored("Faky tweeting:\n", 'red') + colored(message, 'yellow') + "\n" + last_tweeted)

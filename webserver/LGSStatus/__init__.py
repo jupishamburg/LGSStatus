@@ -1,5 +1,7 @@
-import bottle, json
+import bottle, json, sys
 from LGSStatus import db_manager, watcher, twitter_handler
+
+is_dev_mode = sys.modules['__main__'].args['dev']
 
 with open("config.json") as config_fh:
 	config = json.load(config_fh)
@@ -9,7 +11,11 @@ with open("tweets.json") as tweets_fh:
 
 app = bottle.Bottle()
 db = db_manager.DatabaseManager(config["db"])
-twitter = twitter_handler.TwitterHandler(config, tweets, db)
+
+if is_dev_mode:
+	twitter = twitter_handler.DevTwitterHandler(config, tweets, db)
+else:
+	twitter = twitter_handler.TwitterHandler(config, tweets, db)
 
 watch = watcher.Watcher(twitter, config["db"])
 
