@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 from argparse import ArgumentParser
-
 parser = ArgumentParser(description="LGS Status")
 parser.add_argument(
 	"-ft",
@@ -21,7 +20,7 @@ parser.add_argument(
 args = vars(parser.parse_args())
 
 import bottle
-from LGSStatus import app, twitter, config
+from LGSStatus import app, twitter
 
 if (args['force_status_tweet_on_start'] is True):
 	print("Force Tweet about Door State")
