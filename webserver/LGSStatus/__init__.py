@@ -1,7 +1,11 @@
 import bottle, json, sys
 from LGSStatus import db_manager, watcher, twitter_handler
 
-is_dev_mode = sys.modules['__main__'].args['dev']
+try:
+	is_dev_mode = sys.modules['__main__'].args['dev']
+except AttributeError:
+	is_dev_mode = True
+	pass
 
 with open("config.json") as config_fh:
 	config = json.load(config_fh)
