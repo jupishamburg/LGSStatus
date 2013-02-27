@@ -31,7 +31,10 @@ bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
 bash_command = "sass --watch ./LGSStatus/static/css/lgsstatus.sass:./LGSStatus/static/css/lgsstatus.css"
 import subprocess
-process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+try:
+	process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+except OSError:
+	pass
 
 @app.route("/static/<filepath:path>")
 def static(filepath):
