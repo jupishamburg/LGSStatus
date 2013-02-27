@@ -18,10 +18,10 @@ db = db_manager.DatabaseManager(config["db"])
 
 if is_dev_mode:
 	twitter = twitter_handler.DevTwitterHandler(config, tweets, db)
+	watch = watcher.DevWatcher(twitter, config["db"])
 else:
 	twitter = twitter_handler.TwitterHandler(config, tweets, db)
-
-watch = watcher.Watcher(twitter, config["db"])
+	watch = watcher.Watcher(twitter, config["db"])
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
