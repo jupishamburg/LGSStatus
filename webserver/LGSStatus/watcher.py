@@ -21,7 +21,6 @@ class Watcher(object):
 				self.twitter.tweet_status_unknown()
 
 		self.timer(self.watcher_interval, self.check_if_kaput).start()
-		print "fnord"
 
 	def getDb(self, db_manager, config):
 		return db_manager.DatabaseManager(config)
