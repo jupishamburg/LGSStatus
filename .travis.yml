@@ -15,6 +15,4 @@ notifications:
 # command to run tests
 script:
   - echo "running tests ..."
-  - cd webserver 
-  - pwd
-  - python -m unittest discover
+  - cd webserver && python -m unittest discover
