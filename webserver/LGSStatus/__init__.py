@@ -1,7 +1,10 @@
 import bottle, json, sys
 from LGSStatus import db_manager, watcher, twitter_handler
 
-is_dev_mode = sys.modules['__main__'].args['dev']
+try:
+	is_dev_mode = sys.modules['__main__'].args['dev']
+except AttributeError:
+	is_dev_mode = True
 
 with open("config.json") as config_fh:
 	config = json.load(config_fh)
@@ -14,10 +17,10 @@ db = db_manager.DatabaseManager(config["db"])
 
 if is_dev_mode:
 	twitter = twitter_handler.DevTwitterHandler(config, tweets, db)
+	watch = watcher.DevWatcher(twitter, config["db"])
 else:
 	twitter = twitter_handler.TwitterHandler(config, tweets, db)
-
-watch = watcher.Watcher(twitter, config["db"])
+	watch = watcher.Watcher(twitter, config["db"])
 
 bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
