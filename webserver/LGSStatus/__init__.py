@@ -7,8 +7,12 @@ except AttributeError:
 	is_dev_mode = True
 	pass
 
-with open("config.json") as config_fh:
-	config = json.load(config_fh)
+try:
+	with open("config.json") as config_fh:
+		config = json.load(config_fh)
+except IOError:
+	with open("config.json.example") as config_fh:
+		config = json.load(config_fh)
 
 with open("tweets.json") as tweets_fh:
 	tweets = json.load(tweets_fh)
