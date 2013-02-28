@@ -11,11 +11,28 @@ class Arduino(object):
 			"Failed to connect!"
 
 		self.status = None
-		self.is_connected = False
+		self.readStatus()
 
-	def getLatestStatus(self):
+	def readStatus(self):
 		self.status = self.serial.readline()
+
+	def getStatus(self):
 		return self.status
+
+	def getDoorState(self):
+		status = self.getStatus()
+		status = status.replace("\r\n", "").split(",")
+		door_state = "1" if (int(status[1]) > 150) else "0"
+
+		return door_state
+
+	def getTemperature(self):
+		# dirty hack because of electrical problems
+		status = self.getStatus()
+		status = status.replace("\r\n", "").split(",")
+		temperature = int(status[0]) - 12
+
+		return temperature
 
 class Poster(object):
 	def post_door_state(base_url, door_state, security_token):
@@ -36,16 +53,10 @@ base_url = sys.argv[1]
 security_token = sys.argv[2]
 port = sys.argv[3]
 
-print port
-
 arduino = Arduino(port)
 
-status = arduino.getLatestStatus()
-v = status.replace("\r\n", "").split(",")
-
-door_state = "1" if (int(v[1]) > 150) else "0"
-temperature = int(v[0]) - 12 # dirty hack because of electrical problems
+status = arduino.getStatus()
 
 poster = Poster()
-poster.post_door_state(base_url, door_state, security_token)
-poster.post_temperature(base_url, temperature, security_token)
+poster.post_door_state(base_url, arduino.getDoorState(), security_token)
+poster.post_temperature(base_url, arduino.getTemperature(), security_token)
