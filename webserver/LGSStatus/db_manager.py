@@ -41,8 +41,8 @@ class DatabaseManager(object):
 
 	def set_value_of_type(self, type, value):
 		self.cur.execute("INSERT INTO {0} (value, time) VALUES (?, ?);".format(type), (
-		value,
-		int(time.time())
+			value,
+			int(time.time())
 		))
 
 		self.conn.commit()

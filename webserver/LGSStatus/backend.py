@@ -1,5 +1,5 @@
 import bottle
-from LGSStatus import app, config, db_manager, twitter, watch
+from LGSStatus import app, config, db, twitter, watch
 
 @app.post("/append/<type>")
 def insert(type):
@@ -15,7 +15,7 @@ def insert(type):
 	if not value:
 		bottle.abort(400, "Missing value parameter")
 
-	db_manager.set_value_of_type(type, value)
+	db.set_value_of_type(type, value)
 
 	if type == "door":
 		twitter.tweet_about_door_state_if_changed()
