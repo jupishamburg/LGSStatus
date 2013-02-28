@@ -11,6 +11,10 @@ class Arduino(object):
 			self.serial = serial.Serial(port=port)
 			self.serial.flushInput()
 			self.serial.flushOutput()
+
+			while True:
+				print(self.serial.readline())
+
 		except:
 			"Failed to connect!"
 
@@ -19,8 +23,6 @@ class Arduino(object):
 
 	def readStatus(self):
 		self.status = self.serial.readline()
-		while True:
-			 print self.serial.readline()
 
 	def getStatus(self):
 		return self.status
