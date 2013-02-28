@@ -50,19 +50,25 @@ class Poster(object):
 
 		requests.post(base_url + "/temperature", params)
 
-base_url = sys.argv[1]
-security_token = sys.argv[2]
-port = sys.argv[3]
+def main():
+	base_url = sys.argv[1]
+	security_token = sys.argv[2]
+	port = sys.argv[3]
+	arduino = Arduino(port)
+	status = arduino.getStatus()
 
-arduino = Arduino(port)
+	print 'frak this:'
+	print arduino.getStatus()
+	print arduino.getDoorState()
+	print arduino.getTemperature()
 
-status = arduino.getStatus()
+	poster = Poster()
+	poster.post_door_state(base_url, arduino.getDoorState(), security_token)
+	poster.post_temperature(base_url, arduino.getTemperature(), security_token)
 
-print 'frak this:'
-print arduino.getStatus()
-print arduino.getDoorState()
-print arduino.getTemperature()
-
-#poster = Poster()
-#poster.post_door_state(base_url, arduino.getDoorState(), security_token)
-#poster.post_temperature(base_url, arduino.getTemperature(), security_token)
+if __name__ == '__main__':
+	try:
+		main(args[1])
+	except IndexError:
+		print "Trying again ..."
+		main()
