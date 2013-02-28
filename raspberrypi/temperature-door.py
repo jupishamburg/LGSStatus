@@ -25,6 +25,7 @@ class Arduino(object):
 
 	def getDoorState(self):
 		status = self.getStatus()
+		print status
 		status = status.replace("\r\n", "").split(",")
 		door_state = "1" if (int(status[1]) > 150) else "0"
 
@@ -33,6 +34,7 @@ class Arduino(object):
 	def getTemperature(self):
 		# dirty hack because of electrical problems
 		status = self.getStatus()
+		print status
 		status = status.replace("\r\n", "").split(",")
 		temperature = int(status[0]) - 12
 
