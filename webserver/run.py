@@ -10,14 +10,40 @@ parser.add_argument(
 )
 
 parser.add_argument(
-	"-dev",
-	"--dev",
-	help="Dev mode",
+	"-prod",
+	"--productive-system",
+	help="Run with this flag on productive live server.",
 	action='store_true',
 	required=False
 )
 
+parser.add_argument(
+	"-ip",
+	"--host-ip",
+	help="Local IP on which the server will be listening",
+	default="0.0.0.0"
+)
+
+parser.add_argument(
+	"-p",
+	"--port",
+	help="Local port on which the server will be listening.",
+	default="8080"
+)
+
+parser.add_argument(
+	"-srv",
+	"--server",
+	help="Server to be used",
+	default="tornado"
+)
+
+
 args = vars(parser.parse_args())
+
+print args
+
+
 
 import bottle
 from LGSStatus import app, twitter
@@ -27,4 +53,4 @@ if (args['force_status_tweet_on_start'] is True):
 	twitter.tweet_door_state()
 
 if __name__ == "__main__":
-	bottle.run(app, host="0.0.0.0", port="8080", server="tornado")
+	bottle.run(app, host=args['host_ip'], port=args['port'], server=args['server'])

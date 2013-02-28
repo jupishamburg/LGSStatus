@@ -2,10 +2,9 @@ import bottle, json, sys
 from LGSStatus import db_manager, watcher, twitter_handler
 
 try:
-	is_dev_mode = sys.modules['__main__'].args['dev']
+	is_dev_mode = not sys.modules['__main__'].args['productive_system']
 except AttributeError:
 	is_dev_mode = True
-	pass
 
 try:
 	with open("config.json") as config_fh:
@@ -27,14 +26,15 @@ else:
 	twitter = twitter_handler.TwitterHandler(config, tweets, db)
 	watch = watcher.Watcher(twitter, config["db"])
 
-bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
-
 bash_command = "sass --watch ./LGSStatus/static/css/lgsstatus.sass:./LGSStatus/static/css/lgsstatus.css"
 import subprocess
 try:
 	process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
 except OSError:
+	print "Cannot convert sass to css!"
 	pass
+
+bottle.TEMPLATE_PATH.append("./LGSStatus/templates")
 
 @app.route("/static/<filepath:path>")
 def static(filepath):
