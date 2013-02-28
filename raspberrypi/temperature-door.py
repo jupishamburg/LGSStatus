@@ -13,8 +13,7 @@ class Arduino(object):
 			self.serial.flushOutput()
 
 			while True:
-				print(self.serial.readline())
-
+				print(self.serial.readline()
 		except:
 			"Failed to connect!"
 
@@ -67,6 +66,6 @@ arduino = Arduino(port)
 
 status = arduino.getStatus()
 
-poster = Poster()
-poster.post_door_state(base_url, arduino.getDoorState(), security_token)
-poster.post_temperature(base_url, arduino.getTemperature(), security_token)
+#poster = Poster()
+#poster.post_door_state(base_url, arduino.getDoorState(), security_token)
+#poster.post_temperature(base_url, arduino.getTemperature(), security_token)
