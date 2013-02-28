@@ -31,7 +31,7 @@ base_url = sys.argv[1]
 security_token = sys.argv[2]
 port = sys.argv[3]
 
-s = serial.Serial(port=port, 9600)
+s = serial.Serial(port=port)
 arduino = Arduino(s)
 
 status = arduino.getLatestStatus()
