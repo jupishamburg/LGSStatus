@@ -8,7 +8,7 @@ class Arduino(object):
 		self.status = None
 
 		try:
-			self.serial = serial.Serial(port=port, 9600)
+			self.serial = serial.Serial(port=port)
 		except:
 			"Failed to connect!"
 
@@ -55,6 +55,7 @@ def main():
 	security_token = sys.argv[2]
 	port = sys.argv[3]
 	arduino = Arduino(port)
+
 	status = arduino.getStatus()
 
 	print 'frak this:'
@@ -68,7 +69,7 @@ def main():
 
 if __name__ == '__main__':
 	try:
-		main(args[1])
+		main()
 	except IndexError:
 		print "Trying again ..."
 		main()
