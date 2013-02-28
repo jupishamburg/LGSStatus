@@ -4,11 +4,18 @@ import serial
 import requests
 
 class Arduino(object):
-	def __init__(self, serial):
-		self.serial = serial
+	def __init__(self, port, serial=serial):
+		try:
+			self.serial = serial.Serial(port=port)
+		except:
+			"Failed to connect!"
+
+		self.status = None
+		self.is_connected = False
+
 	def getLatestStatus(self):
-		status = self.serial.readline()
-		return status
+		self.status = self.serial.readline()
+		return self.status
 
 class Poster(object):
 	def post_door_state(base_url, door_state, security_token):
@@ -29,8 +36,9 @@ base_url = sys.argv[1]
 security_token = sys.argv[2]
 port = sys.argv[3]
 
-s = serial.Serial(port=port)
-arduino = Arduino(s)
+print port
+
+arduino = Arduino(port)
 
 status = arduino.getLatestStatus()
 v = status.replace("\r\n", "").split(",")
