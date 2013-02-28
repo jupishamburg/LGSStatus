@@ -5,13 +5,17 @@ import requests
 
 class Arduino(object):
 	def __init__(self, port, serial=serial):
+		self.status = None
+
 		try:
 			self.serial = serial.Serial(port=port)
+			self.serial.flushInput()
+			self.serial.flushOutput()
 		except:
 			"Failed to connect!"
 
-		self.status = None
-		self.readStatus()
+		if self.serial.write("k") is 1:
+			self.readStatus()
 
 	def readStatus(self):
 		self.status = self.serial.readline()
