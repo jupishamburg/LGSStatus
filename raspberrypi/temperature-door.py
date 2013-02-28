@@ -7,9 +7,7 @@ class Arduino(object):
 	def __init__(self, serial):
 		self.serial = serial
 	def getLatestStatus(self):
-		val=None
-		while self.serial.inWaiting() > 0:
-			status = self.serial.readline()
+		status = self.serial.readline()
 		return status
 
 class Poster(object):
