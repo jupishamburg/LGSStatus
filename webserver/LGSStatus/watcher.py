@@ -36,5 +36,5 @@ class Watcher(object):
 
 import mock
 class DevWatcher(Watcher):
-	def __init__(self, twitter, db_config, db_manager=db_manager, timer=mock.Mock):
-		super(DevWatcher, self)
+	def __init__(self, twitter, db_config, db_manager=db_manager, timer=mock.Mock()):
+		super(DevWatcher, self).__init__(twitter, db_config, db_manager=db_manager, timer=timer)
