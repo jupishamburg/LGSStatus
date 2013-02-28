@@ -19,6 +19,8 @@ class Arduino(object):
 
 	def readStatus(self):
 		self.status = self.serial.readline()
+		while True:
+			 print self.serial.readline()
 
 	def getStatus(self):
 		return self.status
