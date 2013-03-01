@@ -29,20 +29,22 @@ class Arduino(Thread):
 	def getLastRecieved(self):
 		return self.last_recieved
 
-	def getStatus(self):
-		return self.status
+	def is_door_open(self):
+		try:
+			lumen = int(self.getLastRecieved()[1])
+			return_val = lumen > 150
+		except Exception:
+			return_val = None
 
-#	def getDoorState(self):
-#		val = self.getDataArray()
-#		door_state = "1" if (int(val[1]) > 150) else "0"
-#
-#		print door_state
-#		return door_state
-#
-#	def getTemperature(self):
-#		# dirty hack because of electrical problems
-#		val = self.getDataArray()
-#		temperature = int(val[0]) - 12
-#
-#		print temperature
-#		return temperature
+		return return_val
+
+	def get_temperature(self):
+		try:
+			temperature = int(float(self.getLastRecieved()[0]))
+			temperature_offset = -5
+			return_val = int(temperature) + temperature_offset
+		except Exception:
+			return_val = None
+			pass
+
+		return return_val

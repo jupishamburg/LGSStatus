@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 from arduino import Arduino
+from poster import Poster
 import time
-
 import sys
 
 if __name__ == '__main__':
@@ -16,15 +16,12 @@ if __name__ == '__main__':
 	arduino = Arduino(port=port)
 	arduino.start()
 
-	while True:
-		print arduino.getLastRecieved()
-		time.sleep(1)
+	time.sleep(1)
 
-#	print 'frak this:'
-#	print arduino.getStatus()
-#	print arduino.getDoorState()
-#	print arduino.getTemperature()
-#
-#	poster = Poster()
-#	poster.post_door_state(base_url, arduino.getDoorState(), security_token)
-#	poster.post_temperature(base_url, arduino.getTemperature(), security_token)
+	print arduino.getLastRecieved()
+	is_door_open = arduino.is_door_open()
+	temperature = arduino.get_temperature()
+
+	poster = Poster()
+	poster.post_door_state(base_url, arduino.is_door_open(), security_token)
+	poster.post_temperature(base_url, str(arduino.get_temperature()), security_token)
