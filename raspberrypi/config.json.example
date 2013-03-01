@@ -1,0 +1,6 @@
+{
+	"URL": "http://YOUR_DOMAIN/append",
+	"KEY": "YOUR_SECRET",
+	"TTY": "/dev/YOUR_SERIAL_PORT_ttyUSB0",
+	"NET": "YOUR_IP/SUBNET"
+}
