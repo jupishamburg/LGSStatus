@@ -9,17 +9,11 @@ class Arduino(Thread):
 		self.daemon = True
 		self.last_recieved = None
 
-		try:
-			self.serial = self.configure_port(port)
-		except:
-			"Failed to connect!"
-			import mock
-			self.serial = mock.MagicMock()
-			pass
+		self.serial = self.configure_port(port)
+		self.serial.open()
 
-	def configure_port(port_id, serial=serial):
-		ser = serial.Serial(port_id, timeout=1)
-		ser.port = port_id
+	def configure_port(self, port_id):
+		ser = serial.Serial(port=port_id, timeout=1)
 		ser.rtscts = True
 		ser.dsrdtr = True
 
@@ -27,29 +21,16 @@ class Arduino(Thread):
 
 	def recieve(self):
 		while True:
-			self.last_recieved = random.Random().randint(0, 100)
-			time.sleep(1)
-
-#		buffer = ''
-		#			buffer = buffer + self.serial.read(self.serial.inWaiting())
-		#			if '\n' in buffer:
-		#				lines = buffer.split('\n') # Guaranteed to have at least 2 entries
-		#				self.last_recieved_lock.aquire()
-		#				self.last_received = lines[-2]
-		#				self.last_recieved_lock.release()
-		#				#If the Arduino sends lots of empty lines, you'll lose the
-		#				#last filled line, so you could make the above statement conditional
-		#				#like so: if lines[-2]: last_received = lines[-2]
-		#				buffer = lines[-1]
+			self.serial.flushInput()
+			self.serial.flushOutput()
+			if self.serial.isOpen():
+				self.last_recieved = self.serial.readline().replace("\r\n", "").split("|")
 
 	def getLastRecieved(self):
 		return self.last_recieved
 
 	def getStatus(self):
 		return self.status
-
-	def getDataArray(self):
-		return self.getStatus().replace("\r\n", "").split(",")
 
 #	def getDoorState(self):
 #		val = self.getDataArray()

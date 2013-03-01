@@ -13,7 +13,7 @@ if __name__ == '__main__':
 		print "No arguments given, dummy run"
 		pass
 
-	arduino = Arduino(port='fnord')
+	arduino = Arduino(port=port)
 	arduino.start()
 
 	while True:
