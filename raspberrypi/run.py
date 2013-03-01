@@ -2,7 +2,6 @@
 from arduino import Arduino
 from poster import Poster
 import time
-import sys
 import subprocess
 import json
 
@@ -16,10 +15,9 @@ if __name__ == '__main__':
 
 	arduino = Arduino(port=port)
 	arduino.start()
+	time.sleep(1)
 
 	while True:
-		time.sleep(5)
-
 		is_door_open = arduino.is_door_open()
 		temperature = arduino.get_temperature()
 
@@ -34,3 +32,5 @@ if __name__ == '__main__':
 		poster.post_door_state(base_url, arduino.is_door_open(), security_token)
 		poster.post_temperature(base_url, str(arduino.get_temperature()), security_token)
 		poster.post_clients(base_url, str(network_clients_count), security_token)
+
+		time.sleep(300)
