@@ -4,31 +4,40 @@ import serial
 import requests
 
 class Arduino(object):
-	def __init__(self, port, serial=serial):
+	def __init__(self, port):
 		self.status = None
 
 		try:
-			self.serial = serial.Serial(port=port)
+			self.serial = self.configure_port(port)
 		except:
 			"Failed to connect!"
 
 		if self.serial.inWaiting():
 			self.status = self.serial.readline()
 
+	def configure_port(port_id, serial=serial):
+		ser = serial.Serial()
+		ser.port = port_id
+		ser.baudrate = 9600
+		ser.rtscts = True
+		ser.dsrdtr = True
+
+		return ser
+
 	def getStatus(self):
 		return self.status
 
 	def getDoorState(self):
 		status = self.getStatus()
-		status = status.replace("\r\n", "").split(",")
+		status = self.status.replace("\r\n", "").split(",")
 		door_state = "1" if (int(status[1]) > 150) else "0"
 
 		return door_state
 
 	def getTemperature(self):
 		# dirty hack because of electrical problems
-		status = self.getStatus()
-		status = status.replace("\r\n", "").split(",")
+		self.status = self.getStatus()
+		self.status = self.status.replace("\r\n", "").split(",")
 		temperature = int(status[0]) - 12
 
 		return temperature
