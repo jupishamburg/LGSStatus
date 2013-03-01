@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 from arduino import Arduino
+import time
 
 import sys
 
@@ -17,6 +18,7 @@ if __name__ == '__main__':
 
 	while True:
 		print arduino.getLastRecieved()
+		time.sleep(1)
 
 #	print 'frak this:'
 #	print arduino.getStatus()

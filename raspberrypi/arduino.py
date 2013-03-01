@@ -1,6 +1,7 @@
 from threading import Thread
 import serial
 import random
+import time
 
 class Arduino(Thread):
 	def __init__(self, port):
@@ -25,8 +26,11 @@ class Arduino(Thread):
 		return ser
 
 	def recieve(self):
-		buffer = ''
 		while True:
+			self.last_recieved = random.Random().randint(0, 100)
+			time.sleep(1)
+
+#		buffer = ''
 		#			buffer = buffer + self.serial.read(self.serial.inWaiting())
 		#			if '\n' in buffer:
 		#				lines = buffer.split('\n') # Guaranteed to have at least 2 entries
@@ -38,12 +42,8 @@ class Arduino(Thread):
 		#				#like so: if lines[-2]: last_received = lines[-2]
 		#				buffer = lines[-1]
 
-			self.last_recieved = random.Random().randint(0, 100)
-
 	def getLastRecieved(self):
 		return self.last_recieved
-
-
 
 	def getStatus(self):
 		return self.status
