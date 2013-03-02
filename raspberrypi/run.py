@@ -7,6 +7,7 @@ from termcolor import cprint
 import time
 import subprocess
 import json
+import datetime
 
 if __name__ == '__main__':
 	is_live_run = None
@@ -42,12 +43,13 @@ if __name__ == '__main__':
 	network_clients_count = None
 
 	while True:
-		is_door_open = arduino.is_door_open()
+		is_door_open = arduino.get_is_door_open()
 		temperature = arduino.get_temperature()
+		recieved = arduino.get_last_recieved()
 
 		if is_live_run:
 			poster = Poster()
-			poster.post_door_state(base_url, arduino.is_door_open(), security_token)
+			poster.post_door_state(base_url, arduino.get_is_door_open(), security_token)
 			poster.post_temperature(base_url, str(arduino.get_temperature()), security_token)
 			poster.post_clients(base_url, str(network_clients_count), security_token)
 
@@ -57,6 +59,9 @@ if __name__ == '__main__':
 		else:
 			time.sleep(2)
 
+		cprint(str(datetime.datetime.now().strftime('%G-%b-%d-%H:%M:%S')), color="red")
 		cprint("Nmap " + str(network_clients_count), color="blue")
-		cprint("Tür offen: " + str(arduino.is_door_open()), color="yellow")
+		cprint("Tür offen: " + str(arduino.get_is_door_open()), color="yellow")
 		cprint("Temperatur: " + str(arduino.get_temperature()), color="cyan")
+		print recieved
+		print ("\n")

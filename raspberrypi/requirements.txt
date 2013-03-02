@@ -1,2 +1,5 @@
 requests
-serial
+pyserial
+datetime
+argparse
+termcolor
