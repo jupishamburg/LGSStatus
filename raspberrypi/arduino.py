@@ -13,16 +13,21 @@ class Arduino(Thread):
 		self.temperature = None
 
 	def configure_port(self, port_id):
-		ser = serial.Serial(port=port_id, timeout=1)
-		ser.rtscts = True
-		ser.dsrdtr = True
+		ser = serial.Serial(
+			port=port_id,
+			bytesize=serial.EIGHTBITS,
+			parity=serial.PARITY_NONE,
+			stopbits=serial.STOPBITS_ONE,
+			timeout=1,
+			xonxoff=0,
+			rtscts=0,
+			interCharTimeout=None
+		)
 
 		return ser
 
 	def recieve(self):
 		while True:
-			self.serial.flushInput()
-			self.serial.flushOutput()
 			if self.serial.isOpen():
 				self.last_recieved = self.serial.readline().replace("\r\n", "").split("|")
 				self.set_is_door_open(self.last_recieved )
