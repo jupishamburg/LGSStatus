@@ -9,8 +9,6 @@ class Arduino(Thread):
 		self.last_recieved = None
 
 		self.serial = self.configure_port(port)
-		self.serial.open()
-
 		self.is_door_open = None
 		self.temperature = None
 

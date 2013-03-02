@@ -1,5 +1,5 @@
 requests
-pyserial
+pyserial>=2.6
 datetime
 argparse
 termcolor
