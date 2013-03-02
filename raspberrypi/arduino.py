@@ -1,6 +1,5 @@
 from threading import Thread
 import serial
-import random
 import time
 
 class Arduino(Thread):
@@ -35,6 +34,7 @@ class Arduino(Thread):
 			return_val = lumen > 150
 		except Exception:
 			return_val = None
+			pass
 
 		return return_val
 
