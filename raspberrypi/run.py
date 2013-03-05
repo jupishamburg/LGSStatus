@@ -9,32 +9,24 @@ import subprocess
 import json
 import datetime
 
-if __name__ == '__main__':
-	is_live_run = None
-	parser = ArgumentParser()
-
-	parser.add_argument(
-		"-prod",
-		"--productive-system",
-		help="When set, will continiously update the webserver. Otherwise dev enviroment is assumed.",
-		action='store_true',
-		required=False
-	)
-
-	args = vars(parser.parse_args())
-	is_live_run = args["productive_system"]
-
-	if is_live_run:
-		cprint("Live run!", color="magenta")
-	else:
-		cprint("Test run!", color="green")
-
+def main():
 	with open("config.json") as config_fh:
 		config = json.load(config_fh)
+
+	args = get_args()
+	is_live_run = args["productive_system"]
 
 	base_url = config["URL"]
 	security_token = config["KEY"]
 	port = config["TTY"]
+
+	poster = Poster()
+	if is_live_run:
+		cprint("Live run!", color="magenta")
+		delay = 300
+	else:
+		cprint("Test run!", color="green")
+		delay = 3
 
 	arduino = Arduino(port=port)
 	arduino.start()
@@ -47,21 +39,33 @@ if __name__ == '__main__':
 		temperature = arduino.get_temperature()
 		recieved = arduino.get_last_recieved()
 
-		if is_live_run:
-			poster = Poster()
-			poster.post_door_state(base_url, arduino.get_is_door_open(), security_token)
-			poster.post_temperature(base_url, str(arduino.get_temperature()), security_token)
-			poster.post_clients(base_url, str(network_clients_count), security_token)
+		poster.post_door_state(base_url, is_door_open, security_token)
+		poster.post_temperature(base_url, str(temperature), security_token)
+		poster.post_clients(base_url, str(network_clients_count), security_token)
 
-			nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-			network_clients_count = int(nmap.stdout.readlines()[0])
-			time.sleep(10)
-		else:
-			time.sleep(2)
+		nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+		network_clients_count = int(nmap.stdout.readlines()[0])
 
 		cprint(str(datetime.datetime.now().strftime('%G-%b-%d-%H:%M:%S')), color="red")
 		cprint("Nmap " + str(network_clients_count), color="blue")
-		cprint("Tür offen: " + str(arduino.get_is_door_open()), color="yellow")
-		cprint("Temperatur: " + str(arduino.get_temperature()), color="cyan")
+		cprint("Tür offen: " + str(is_door_open), color="yellow")
+		cprint("Temperatur: " + str(temperature), color="cyan")
 		print recieved
 		print ("\n")
+
+		time.sleep(delay)
+
+def get_args():
+	parser = ArgumentParser()
+	parser.add_argument(
+		"-prod",
+		"--productive-system",
+		help="When set, will continiously update the webserver. Otherwise dev enviroment is assumed.",
+		action='store_true',
+		required=False
+	)
+
+	return vars(parser.parse_args())
+
+if __name__ == '__main__':
+	main()
