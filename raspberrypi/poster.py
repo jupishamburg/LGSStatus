@@ -31,9 +31,10 @@ class Poster(object):
 			self.post(base_url + "/temperature", params)
 
 	def post_clients(self, base_url, network_clients_count, security_token):
-		params = {
-			'value': network_clients_count,
-			'key': security_token
-		}
+		if network_clients_count is not None:
+			params = {
+				'value': network_clients_count,
+				'key': security_token
+			}
 
-		self.post(base_url + "/clients", params)
+			self.post(base_url + "/clients", params)
