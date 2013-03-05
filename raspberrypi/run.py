@@ -1,13 +1,15 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 import time, subprocess, json, datetime
+from os import path
 from arduino import Arduino
 from poster import Poster
 from argparse import ArgumentParser
 from termcolor import cprint
 
 def main():
-	with open("config.json") as config_fh:
+	config_path = path.relpath("config.json")
+	with open(config_path) as config_fh:
 		config = json.load(config_fh)
 
 	args = get_args()
