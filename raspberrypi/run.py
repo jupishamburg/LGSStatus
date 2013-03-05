@@ -8,7 +8,10 @@ from argparse import ArgumentParser
 from termcolor import cprint
 
 def main():
-	config_path = path.realpath("config.json")
+	network_clients_sh = path.join(path.dirname(__file__), 'networkClientsInNetwork.sh')
+	config_path = path.join(path.dirname(__file__), 'config.json')
+	print config_path
+	print network_clients_sh
 	with open(config_path) as config_fh:
 		config = json.load(config_fh)
 
@@ -38,7 +41,7 @@ def main():
 		temperature = arduino.get_temperature()
 		recieved = arduino.get_last_recieved()
 
-		nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+		nmap = subprocess.Popen(network_clients_sh, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 		network_clients_count = int(nmap.stdout.readlines()[0])
 
 		poster.post_door_state(base_url, is_door_open, security_token)
