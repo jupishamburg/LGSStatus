@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 from termcolor import cprint
 
 def main():
-	config_path = path.relpath("config.json")
+	config_path = path.realpath("config.json")
 	with open(config_path) as config_fh:
 		config = json.load(config_fh)
 
