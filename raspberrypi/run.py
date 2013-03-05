@@ -10,20 +10,23 @@ import json
 import datetime
 
 def main():
-	args = get_args()
-	is_live_run = args["productive_system"]
-
-	if is_live_run:
-		cprint("Live run!", color="magenta")
-	else:
-		cprint("Test run!", color="green")
-
 	with open("config.json") as config_fh:
 		config = json.load(config_fh)
+
+	args = get_args()
+	is_live_run = args["productive_system"]
 
 	base_url = config["URL"]
 	security_token = config["KEY"]
 	port = config["TTY"]
+
+	poster = Poster()
+	if is_live_run:
+		cprint("Live run!", color="magenta")
+		delay = 300
+	else:
+		cprint("Test run!", color="green")
+		delay = 3
 
 	arduino = Arduino(port=port)
 	arduino.start()
@@ -36,17 +39,14 @@ def main():
 		temperature = arduino.get_temperature()
 		recieved = arduino.get_last_recieved()
 
-		if is_live_run:
-			poster = Poster()
-			poster.post_door_state(base_url, is_door_open, security_token)
-			poster.post_temperature(base_url, str(temperature), security_token)
-			poster.post_clients(base_url, str(network_clients_count), security_token)
+		poster.post_door_state(base_url, is_door_open, security_token)
+		poster.post_temperature(base_url, str(temperature), security_token)
+		poster.post_clients(base_url, str(network_clients_count), security_token)
 
-			nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-			network_clients_count = int(nmap.stdout.readlines()[0])
-			time.sleep(300)
-		else:
-			time.sleep(2)
+		nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+		network_clients_count = int(nmap.stdout.readlines()[0])
+
+		time.sleep(delay)
 
 		cprint(str(datetime.datetime.now().strftime('%G-%b-%d-%H:%M:%S')), color="red")
 		cprint("Nmap " + str(network_clients_count), color="blue")
