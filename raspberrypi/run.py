@@ -46,14 +46,14 @@ def main():
 		nmap = subprocess.Popen("./networkClientsInNetwork.sh", stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 		network_clients_count = int(nmap.stdout.readlines()[0])
 
-		time.sleep(delay)
-
 		cprint(str(datetime.datetime.now().strftime('%G-%b-%d-%H:%M:%S')), color="red")
 		cprint("Nmap " + str(network_clients_count), color="blue")
 		cprint("Tür offen: " + str(is_door_open), color="yellow")
 		cprint("Temperatur: " + str(temperature), color="cyan")
 		print recieved
 		print ("\n")
+
+		time.sleep(delay)
 
 def get_args():
 	parser = ArgumentParser()
