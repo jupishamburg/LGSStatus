@@ -1,11 +1,10 @@
 #!/usr/bin/env python2
 from argparse import ArgumentParser
 import bottle
-from LGSStatus import app, twitter
 
 def main():
 	args = get_args()
-
+	from LGSStatus import app, twitter
 	if (args['force_status_tweet_on_start'] is True):
 		print("Force Tweet about Door State")
 		twitter.tweet_door_state()
@@ -50,7 +49,6 @@ def get_args():
 		help="Server to be used",
 		default="tornado"
 	)
-
 	return vars(parser.parse_args())
 
 if __name__ == "__main__":
