@@ -53,7 +53,7 @@ class Arduino(Thread):
 	def set_temperature(self, recieved):
 		try:
 			temperature = int(float(recieved[0]))
-			temperature_offset = -5
+			temperature_offset = -15
 			self.temperature = int(temperature) + temperature_offset
 		except Exception:
 			self.temperature = None
