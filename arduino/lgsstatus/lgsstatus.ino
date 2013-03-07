@@ -1,3 +1,9 @@
+/*
+Berechnung für die Temperatur:
+Temperatur = Input*(5V/1023)/(10mV/K)-273,15
+*/
+
+
 #include<Arduino.h>
 
 void setup() {
