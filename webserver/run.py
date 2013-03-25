@@ -2,10 +2,9 @@
 from argparse import ArgumentParser
 import bottle
 
-def main():
-	args = get_args()
+def main(args):
 	from LGSStatus import app, twitter
-	if (args['force_status_tweet_on_start'] is True):
+	if args['force_status_tweet_on_start'] is True:
 		print("Force Tweet about Door State")
 		twitter.tweet_door_state()
 
@@ -52,4 +51,5 @@ def get_args():
 	return vars(parser.parse_args())
 
 if __name__ == "__main__":
-	main()
+	args = get_args()
+	main(args)
