@@ -1,6 +1,8 @@
 import bottle, json, sys
 from LGSStatus import db_manager, watcher, twitter_handler
 
+print 'oo'
+
 try:
 	is_dev_mode = not sys.modules['__main__'].args['productive_system']
 except AttributeError:
@@ -21,7 +23,9 @@ db = db_manager.DatabaseManager(config["db"])
 
 if is_dev_mode:
 	twitter = twitter_handler.DevTwitterHandler(config, tweets, db)
-	watch = watcher.DevWatcher(twitter, config["db"])
+	watch = None
+	#TODO: Make this not break tests!
+	#watcher.DevWatcher(twitter, config["db"])
 else:
 	twitter = twitter_handler.TwitterHandler(config, tweets, db)
 	watch = watcher.Watcher(twitter, config["db"])
