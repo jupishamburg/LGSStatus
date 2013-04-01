@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "jquery": "1.9",
+    "jquery.flot": "https://raw.github.com/flot/flot/master/jquery.flot.js",
+    "jquery.flot.time": "https://raw.github.com/flot/flot/master/jquery.flot.time.js"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
