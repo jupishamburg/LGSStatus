@@ -1,5 +1,6 @@
 # How to run LgsStatePlotter locally:
 
+* `bower install`
 * `sudo apt-get install ruby ruby-dev rubygems`
 * `pip install -r requirements.txt`
 * `gem install sass listen`
