@@ -5,3 +5,5 @@ config.json
 .sw?
 .sass-cache
 webserver/LGSStatus/static/css/lgsstatus.css
+webserver/LGSStatus/static/vendors/
+.idea
