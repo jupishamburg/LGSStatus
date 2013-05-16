@@ -10,7 +10,7 @@ class Watcher(object):
 		self.watcher_interval = 2 * 60 * 60
 		self.db = None
 
-		self.check_if_kaput(db_manager)
+		# self.check_if_kaput(db_manager)
 
 	def check_if_kaput(self, db_manager=db_manager):
 		if not self._is_kaput():
