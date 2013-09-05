@@ -14,7 +14,7 @@ float temp = .0;
 int lumen = 0;
 
 void loop() {
-    temp = analogRead(4) 0.00488759 * 100 - 273.15;
+    temp = analogRead(4) * 0.00488759 * 100 - 273.15;
     lumen = analogRead(0);
     Serial.print(temp);
     Serial.print("|");
